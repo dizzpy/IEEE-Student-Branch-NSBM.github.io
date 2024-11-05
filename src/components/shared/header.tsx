@@ -1,14 +1,12 @@
 "use client";
 
+import IeeeLogoWhite from "@/assets/ieee-logo-white.png";
+import IeeeSbWhiteImage from "@/assets/ieee-sb-white.png";
 import { Separator } from "@/components/ui/separator";
+import { ROUTES } from "@/constants/routes.constants";
 import Image from "next/image";
 import React, { useState } from "react";
 import { AnchorHTMLAttributes } from "react";
-
-import { ROUTES } from "@/constants/routes.constants";
-
-import IeeeLogoWhite from "@/assets/ieee-logo-white.png";
-import IeeeSbWhiteImage from "@/assets/ieee-sb-white.png";
 
 interface GlobalNavItemProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   last?: boolean;
@@ -55,9 +53,9 @@ function GlobalNav() {
       <div className="flex flex-row gap-2 justify-start items-center h-[50px] text-white max-w-[1170px] grow">
         {navItems.map((item, i) => (
           <GlobalNavItem
-            key={item.url}
-            href={item.url}
-            last={i == navItems.length ? true : undefined}
+            key={item.url as unknown as string}
+            href={item.url as unknown as string}
+            last={i === navItems.length - 1}
           >
             {item.label}
           </GlobalNavItem>
@@ -82,7 +80,10 @@ function LocalNav() {
     <div className="hidden md:flex justify-center w-full bg-blue z-50 sticky top-0">
       <nav className="flex flex-row gap-6 uppercase font-semibold justify-center items-center py-3 text-white max-w-[1170px] grow shadow-2xl">
         {navItems.map((item) => (
-          <LocalNavItem key={item.url} href={item.url}>
+          <LocalNavItem
+            key={item.url as unknown as string}
+            href={item.url as unknown as string}
+          >
             {item.label}
           </LocalNavItem>
         ))}
@@ -94,6 +95,9 @@ function LocalNav() {
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+  const closeMenu = () => setMenuOpen(false);
+
   return (
     <header>
       <GlobalNav />
@@ -102,7 +106,7 @@ function Header() {
         <div className="md:hidden flex items-center">
           <button
             className="text-white text-2xl md:hidden mr-2"
-            onClick={() => setMenuOpen(!menuOpen)}
+            onClick={toggleMenu}
           >
             &#9776;
           </button>
@@ -125,6 +129,46 @@ function Header() {
             height={70}
             className="max-w-md"
           />
+        </div>
+      </div>
+
+      {/* sidebar with animation */}
+      <div
+        className={`fixed inset-0 bg-black bg-opacity-40 z-40 transition-opacity duration-300 ${
+          menuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={closeMenu}
+      />
+      <div
+        className={`fixed left-0 top-0 h-full w-[250px] bg-blue text-white z-50 p-5 transform transition-transform duration-300 ease-in-out ${
+          menuOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex flex-col gap-4">
+          <Image
+            src={IeeeLogoWhite}
+            alt="IEEE Logo"
+            height={50}
+            className="mx-auto mb-4"
+          />
+          {[
+            ROUTES.HOME,
+            ROUTES.EVENTS,
+            ROUTES.BLOG,
+            ROUTES.EXCOM,
+            ROUTES.ABOUT_US,
+            ROUTES.CONTACT_US,
+            ROUTES.JOIN_US,
+          ].map((item) => (
+            <a
+              key={item.url as unknown as string}
+              href={item.url as unknown as string}
+              className="text-white text-lg hover:text-gray-200"
+            >
+              {item.label}
+            </a>
+          ))}
         </div>
       </div>
     </header>
