@@ -13,10 +13,11 @@ interface GlobalNavItemProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
 }
 
 function GlobalNavItem(props: GlobalNavItemProps) {
+  const { last, ...anchorProps } = props;
   return (
     <>
-      <a {...props} />
-      {props.last ? null : (
+      <a {...anchorProps} />
+      {last ? null : (
         <Separator
           orientation="vertical"
           className="bg-white last-of-type:hidden h-[20px]"
@@ -55,7 +56,7 @@ function GlobalNav() {
           <GlobalNavItem
             key={item.url as unknown as string}
             href={item.url as unknown as string}
-            last={i === navItems.length - 1}
+            last={i === navItems.length}
           >
             {item.label}
           </GlobalNavItem>
@@ -105,7 +106,7 @@ function Header() {
       <div className="flex justify-between items-center w-full bg-blue p-3 md:p-0">
         <div className="md:hidden flex items-center">
           <button
-            className="text-white text-2xl md:hidden mr-2"
+            className="text-white text-3xl md:hidden mr-2 mb-1.5"
             onClick={toggleMenu}
           >
             &#9776;
