@@ -1,12 +1,13 @@
 "use client";
 
+import Image from "next/image";
+import React, { useState } from "react";
+import { AnchorHTMLAttributes } from "react";
+
 import IeeeLogoWhite from "@/assets/ieee-logo-white.png";
 import IeeeSbWhiteImage from "@/assets/ieee-sb-white.png";
 import { Separator } from "@/components/ui/separator";
 import { ROUTES } from "@/constants/routes.constants";
-import Image from "next/image";
-import React, { useState } from "react";
-import { AnchorHTMLAttributes } from "react";
 
 interface GlobalNavItemProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   last?: boolean;
