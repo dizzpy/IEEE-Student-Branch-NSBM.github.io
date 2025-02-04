@@ -1,23 +1,20 @@
-import Image from "next/image";
-import React from "react";
-
+import IeeeCsColorBlackImage from "@/assets/ieee-cs-colored-black.png";
+import IeeeSbLogoImage from "@/assets/ieee-sb-new-colored.png";
+import WieLogoImage from "@/assets/wie-colored.png";
 import {
   Card,
   CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-
+import Image from "next/image";
+import React from "react";
 import { FaEye } from "react-icons/fa";
 import { TbTargetArrow } from "react-icons/tb";
 
-import IeeeCsColorBlackImage from "@/assets/ieee-cs-colored-black.png";
-import IeeeSbLogoImage from "@/assets/ieee-sb-new-colored.png";
-import WieLogoImage from "@/assets/wie-colored.png";
-
 const VisionMissionSection = () => {
   return (
-    <div className="container mx-auto max-w-[1170px] flex flex-col justify-center items-center">
+    <div className="container mx-auto max-w-[1170px] flex flex-col mt-10 justify-center items-center">
       <div className="max-w-[300px] sm:max-w-[900px] flex flex-col p-5 sm:flex-row justify-center gap-5 ">
         <Card className="shadow-lg flex-1 bg-stone-100 border-none">
           <CardHeader>
@@ -30,10 +27,10 @@ const VisionMissionSection = () => {
             </CardTitle>
 
             <CardDescription className="text-sm text-slate-700">
-              The Student Chapter of IEEE NSBM advises the community on ethics
+              The IEEE Student Branch of NSBM advises the community on ethics
               policy and concerns as well as fostering awareness on ethical
-              issues and promoting ethical behavior amongst individuals and
-              organizations working within the IEEE fields of interest.
+              issues and promoting ethical behaviour amongst individuals and
+              organisations working within the IEEE fields of interest.
             </CardDescription>
           </CardHeader>
         </Card>
@@ -50,7 +47,7 @@ const VisionMissionSection = () => {
 
             <CardDescription className="text-sm text-slate-700">
               A world in which engineers and scientists are respected for their
-              exemplary ethical behavior and the IEEE and its Ethics & Member
+              exemplary ethical behaviour and the IEEE and its Ethics & Member
               Conduct Committee are recognized as a major drive in this regard.
             </CardDescription>
           </CardHeader>
@@ -66,7 +63,7 @@ const VisionMissionSection = () => {
           <Image src={WieLogoImage} alt="WIELogo" />
         </div>
 
-        <div className="flex-1 w-1/3">
+        <div className="flex-1 w-4/5 sm:w-1/3">
           <Image src={IeeeCsColorBlackImage} alt="IEEE CS Logo" />
         </div>
       </div>
